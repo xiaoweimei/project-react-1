@@ -1,11 +1,12 @@
 import React from 'react';
-
+import './TodoItem.css'
 export default class TodoItem extends React.Component{
 	render(){
 		return (
-			<div>
+			<div className="TodoItem">
 				<input type='checkbox' checked={this.props.todo.status==='completed'}
-				conChange={this.toggle.bind(this)} />{this.props.todo.title}
+				conChange={this.toggle.bind(this)} />
+				<span className="title">{this.props.todo.title}</span>
 				<button onClick={this.delete.bind(this)}>删除</button>
 			</div>
 		)
