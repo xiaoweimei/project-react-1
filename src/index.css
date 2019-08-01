@@ -1,5 +1,6 @@
 body {
-  background-color: #ddd;
+  background:radial-gradient(ellipse closest-side,
+      red, yellow 10%, #1e90ff 50%, beige);
 }
 #root{
 	display: flex;

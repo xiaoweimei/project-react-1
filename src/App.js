@@ -10,15 +10,20 @@ class App extends React.Component{
     super()
     this.state={
       newTodo:'',
-      todoList:localStore.load('todoList') || []
+      todoList:localStore.load('todoList') || [],
+      time:new Date().toLocaleTimeString()
     }
+    setInterval(()=>{
+      this.setState({
+      })
+    },1000)
   }
   delete(event,todo){
     todo.deleted=true
     this.setState(this.state)
   }
   componentDidUpdate(){
-    localStore.save('todoList',this.sate.todoList)
+    localStore.save('todoList',this.state.todoList)
   }
   toggle(e,todo){
     todo.status=todo.status==='completed'?'':'completed'
@@ -31,6 +36,7 @@ class App extends React.Component{
     })
   }
   addTodo(event){
+    if(!event.target.value){return}
     console.log('我得添加一个todo了')
     this.state.todoList.push({
       id:idMaker(),
@@ -57,7 +63,8 @@ class App extends React.Component{
     console.log(todos)
     return (
       <div className='App'>
-        <h1>我的待办</h1>
+        <div className="time" >当前时间<br />{new Date().toString().match(/[0-9]{2}:[0-9]{2}:[0-9]{2}/)[0]}</div>
+        <h1>我的备忘录</h1>
         <div className='inputWrapper'>
           <TodoInput content={this.state.newTodo}
             onChange={this.changeTitle.bind(this)}
