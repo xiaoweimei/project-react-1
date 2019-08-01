@@ -47,3 +47,9 @@ input{
   top:3em;
   color:#f0f;
 }
+@media (max-width:800px) { 
+  .App{
+    min-width:28em;
+    margin:1em;
+  }
+}
