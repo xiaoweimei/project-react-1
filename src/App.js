@@ -1,26 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
+import TodoInput from './TodoInput'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component{
+  constructor(){
+    super()
+    this.state={
+      newTodo:'test',
+      todoList:[
+        {id:1,title:'第一个待办'},
+        {id:2,title:'第二个待办'}
+      ]
+    }
+  }
+  render(){
+    let todos=this.state.todoList.map((item,index)=>
+      {return <li>{item.title}</li>})
+    return (
+      <div className='App'>
+        <h1>我的待办</h1>
+        <div className='inputWrapper'>
+          <TodoInput content={this.state.newTodo} />
+          <ol>
+            {todos}
+          </ol>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
