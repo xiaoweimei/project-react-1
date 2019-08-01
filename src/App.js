@@ -16,19 +16,19 @@ class App extends React.Component{
   delete(event,todo){
     todo.deleted=true
     this.setState(this.state)
-    localStore.save('todoList',this.state.todoList)
+  }
+  componentDidUpdate(){
+    localStore.save('todoList',this.sate.todoList)
   }
   toggle(e,todo){
     todo.status=todo.status==='completed'?'':'completed'
     this.setState(this.state)
-    localStore.save('todoList',this.state.todoList)
   }
   changeTitle(event){
     this.setState({
       newTodo:event.target.value,
       todoList:this.state.todoList
     })
-    localStore.save('todoList',this.state.todoList)
   }
   addTodo(event){
     console.log('我得添加一个todo了')
@@ -42,7 +42,6 @@ class App extends React.Component{
       newTodo:'',
       todoList:this.state.todoList
     })
-    localStore.save('todoList',this.state.todoList)
   }
   render(){
     let todos=this.state.todoList
