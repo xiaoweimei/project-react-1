@@ -3,28 +3,32 @@ import TodoInput from './TodoInput';
 import TodoItem from './TodoItem';
 import './reset.css';
 import './App.css';
+import * as localStore from './localStore'
 
 class App extends React.Component{
   constructor(){
     super()
     this.state={
       newTodo:'',
-      todoList:[]
+      todoList:localStore.load('todoList') || []
     }
   }
   delete(event,todo){
     todo.deleted=true
     this.setState(this.state)
+    localStore.save('todoList',this.state.todoList)
   }
   toggle(e,todo){
     todo.status=todo.status==='completed'?'':'completed'
     this.setState(this.state)
+    localStore.save('todoList',this.state.todoList)
   }
   changeTitle(event){
     this.setState({
       newTodo:event.target.value,
       todoList:this.state.todoList
     })
+    localStore.save('todoList',this.state.todoList)
   }
   addTodo(event){
     console.log('我得添加一个todo了')
@@ -38,6 +42,7 @@ class App extends React.Component{
       newTodo:'',
       todoList:this.state.todoList
     })
+    localStore.save('todoList',this.state.todoList)
   }
   render(){
     let todos=this.state.todoList
