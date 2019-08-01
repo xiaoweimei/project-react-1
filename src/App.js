@@ -1,5 +1,7 @@
 import React from 'react';
-import TodoInput from './TodoInput'
+import TodoInput from './TodoInput';
+import TodoItem from './TodoItem';
+import './reset.css';
 import './App.css';
 
 class App extends React.Component{
@@ -14,8 +16,11 @@ class App extends React.Component{
     }
   }
   render(){
-    let todos=this.state.todoList.map((item,index)=>
-      {return <li>{item.title}</li>})
+    let todos=this.state.todoList.map((item,index)=>{
+      return (
+        <li><TodoItem todo={item} /></li>
+        )
+    })
     return (
       <div className='App'>
         <h1>我的待办</h1>
